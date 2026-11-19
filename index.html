@@ -1,0 +1,34 @@
+---
+layout: default
+title: Daftar Naskah
+---
+<section class="hero">
+  <div class="wrap">
+    <svg class="star" viewBox="0 0 100 100" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="1.2">
+        <rect x="18" y="18" width="64" height="64"/>
+        <rect x="18" y="18" width="64" height="64" transform="rotate(45 50 50)"/>
+        <circle cx="50" cy="50" r="14"/>
+      </g>
+    </svg>
+    <h1>{{ site.title }}</h1>
+    <p class="lede">{{ site.tagline }}</p>
+  </div>
+</section>
+
+<main class="wrap">
+  {% if site.posts.size == 0 %}
+    <p class="empty">Belum ada naskah. Tambahkan file Markdown di folder <code>_posts</code> untuk mulai.</p>
+  {% endif %}
+  <ol class="list">
+    {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url | relative_url }}">
+        <span class="meta">{% include tanggal.html tgl=post.date %}</span>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.ringkasan | default: post.excerpt | strip_html | truncatewords: 28 }}</p>
+      </a>
+    </li>
+    {% endfor %}
+  </ol>
+</main>

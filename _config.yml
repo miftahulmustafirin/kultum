@@ -1,0 +1,11 @@
+title: "Catatan Kultum"
+tagline: "Naskah ceramah lima menit untuk masjid, majelis taklim, dan pengingat diri."
+description: "Kumpulan naskah kultum singkat dan refleksi harian oleh Miftahul Mustafirin."
+author: "Miftahul Mustafirin"
+baseurl: "/kultum"
+url: "https://miftahulmustafirin.github.io"
+permalink: /:year/:month/:day/:title/
+markdown: kramdown
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
