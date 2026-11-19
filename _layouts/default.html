@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  {% seo %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <header class="bar">
+    <div class="wrap bar-in">
+      <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      <a class="bar-link" href="https://miftahulmustafirin.github.io/">Profil utama</a>
+    </div>
+  </header>
+
+  {{ content }}
+
+  <footer class="foot">
+    <div class="wrap">
+      <p>© {{ "now" | date: "%Y" }} {{ site.author }}. Silakan disebarluaskan untuk dakwah dan pendidikan.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var bar = document.getElementById('progress');
+      if (document.body.querySelector('.naskah')) {
+        addEventListener('scroll', function () {
+          var h = document.documentElement;
+          var p = h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight);
+          bar.style.transform = 'scaleX(' + Math.min(1, p) + ')';
+        }, { passive: true });
+      }
+      var btn = document.getElementById('salin');
+      if (btn) btn.addEventListener('click', function () {
+        var t = document.querySelector('.naskah').innerText;
+        navigator.clipboard.writeText(t).then(function () {
+          btn.textContent = 'Naskah tersalin';
+          setTimeout(function () { btn.textContent = 'Salin naskah'; }, 2200);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

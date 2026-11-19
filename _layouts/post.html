@@ -1,0 +1,31 @@
+---
+layout: default
+---
+{%- assign menit = content | number_of_words | divided_by: 130 | plus: 1 -%}
+<main class="wrap">
+  <article>
+    <header class="p-head">
+      <p class="meta">{% include tanggal.html tgl=page.date %}, bacaan {% if page.durasi %}{{ page.durasi }}{% else %}{{ menit }} menit{% endif %}</p>
+      <h1>{{ page.title }}</h1>
+      {% if page.ringkasan %}<p class="lede">{{ page.ringkasan }}</p>{% endif %}
+    </header>
+
+    <div class="naskah prose">
+      {{ content }}
+    </div>
+
+    <div class="p-foot">
+      <button class="btn" id="salin" type="button">Salin naskah</button>
+      <a class="btn ghost" href="{{ '/' | relative_url }}">Semua kultum</a>
+    </div>
+
+    {% assign sebelumnya = page.previous %}
+    {% assign berikutnya = page.next %}
+    {% if sebelumnya or berikutnya %}
+    <nav class="pager" aria-label="Kultum lainnya">
+      {% if berikutnya %}<a href="{{ berikutnya.url | relative_url }}"><small>Lebih baru</small>{{ berikutnya.title }}</a>{% endif %}
+      {% if sebelumnya %}<a class="r" href="{{ sebelumnya.url | relative_url }}"><small>Sebelumnya</small>{{ sebelumnya.title }}</a>{% endif %}
+    </nav>
+    {% endif %}
+  </article>
+</main>
